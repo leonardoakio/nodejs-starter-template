@@ -1,0 +1,33 @@
+version: '3.9'
+
+services:
+  mysql:
+    container_name: estapar_mysql
+    image: mysql:8.1
+    volumes:
+      - mysql_db:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=estapar
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - "3306:3306"
+
+  mongo:
+    container_name: estapar_mongodb
+    image: mongo:7.0
+    volumes:
+      - mongo_db:/var/lib/mongo
+    environment:
+      TZ: America/Sao_Paulo
+    ports:
+      - "27017:27017"
+
+  redis:
+    container_name: estapar_redis
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+
+volumes:
+  mysql_db:
+  mongo_db:
